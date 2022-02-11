@@ -1,8 +1,104 @@
-.slideWrapper {
-    width: 80%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.dialogueWrapper {
+  border: 1px solid black;
+  width: 70vw;
+  height: 56vh;
+  display: flex;
+  position: relative;
+}
+
+.dialogueParrotField {
+  width: 60%;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0 40px 0 0;
+}
+
+.dialogueUserField {
+  width: 40%;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+.dialogueParrotPhrase {
+  width: 60%;
+  height: 50px;
+  border-radius: 12px;
+  align-self: flex-end;
+  margin: 30px;
+  background-color: white;
+  box-shadow: 0 0 10px rgb(162, 162, 162);
+  border: 1px solid #666;
+  position: relative;
+}
+
+.dialogueParrotPhraseActive:before {
+  content: " ";
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 9px;
+  top: 51px;
+  border: 15px solid;
+  border-color: #666 transparent transparent #666;
+}
+.dialogueParrotPhraseActive:after {
+  content: " ";
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 10px;
+  top: 49px;
+  border: 15px solid;
+  border-color: #fff transparent transparent #fff;
+}
+
+.dialogueParrotPhrase p {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 15px 0 0 35px;
+}
+
+.dialogueUserPhrase {
+  width: 60%;
+  height: 50px;
+  border-radius: 12px;
+  align-self: flex-start;
+  margin: 50px;
+  background-color: white;
+  box-shadow: 0 0 10px rgb(162, 162, 162);
+  border: 1px solid #666;
+  position: relative;
+}
+
+.dialogueUserPhraseActive:before {
+  transform: scale(-1, 1);
+  content: " ";
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: 13px;
+  top: 51px;
+  border: 15px solid;
+  border-color: #666 transparent transparent #666;
+}
+
+.dialogueUserPhraseActive:after {
+  transform: scale(-1, 1);
+  content: " ";
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: 14px;
+  top: 49px;
+  border: 15px solid;
+  border-color: #fff transparent transparent #fff;
+}
+
+.dialogueUserPhrase p {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 15px 0 0 35px;
 }

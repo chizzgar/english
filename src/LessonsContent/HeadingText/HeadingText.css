@@ -1,20 +1,20 @@
 .textStartContent_heading {
-    color: #434553;
-    margin: 0 0 1% 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    line-height: 2rem;
+  color: #434553;
+  margin: 0 0 1% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 2rem;
 }
 
 .textStartContent_heading p {
-    margin: 5px 0;
-    font-size: 27px;
+  margin: 5px 0;
+  font-size: 27px;
 }
 
-
-.questionIcon, .soundIcon {
+.questionIcon,
+.soundIcon {
   margin: 0 1rem 0 0;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -31,66 +31,65 @@
 .soundIcon:hover {
   transform: rotate(-45deg);
   transition: all 0.3s ease;
-
-
 }
 
 .questionHelpTranslation {
   margin: 10px 0 0 0;
 }
 
-
 .questionHelpTranslation[data-title]:hover:after {
-    max-width: 35vw;
-    min-width: 25vw;
-    box-sizing: border-box;
-    padding: 10px 10px 10px 15px;
-    border: 1px solid #15b100;
-    border-radius: 12px;
-    background-color: #F3F6FF;
-    font-size: 1.2rem;
-    margin: -10px 0 0 0px;
-    /* top: 20%;
+  max-width: 35vw;
+  min-width: 25vw;
+  box-sizing: border-box;
+  padding: 10px 10px 10px 15px;
+  border: 1px solid #15b100;
+  border-radius: 12px;
+  background-color: #f3f6ff;
+  font-size: 1.2rem;
+  margin: -10px 0 0 0px;
+  /* top: 20%;
     right: 500px; */
-    content: attr(data-title);
-    position: absolute;
-    color: black;
-   z-index: 1;
-    transition: opacity 0.2s ease-in-out;
-  }
+  content: attr(data-title);
+  position: absolute;
+  color: black;
+  z-index: 1;
+  transition: opacity 0.2s ease-in-out;
+}
 
 .questionHelpTranslation[data-title]:hover:after {
+  opacity: 0;
+  animation: fade-inHelp 1s forwards;
+}
+
+@keyframes fade-inHelp {
+  0% {
     opacity: 0;
-    animation: fade-inHelp 1s forwards;
   }
-
-  @keyframes fade-inHelp {
-    0% {opacity: 0;}
-    100% {opacity: 1;}
+  100% {
+    opacity: 1;
   }
+}
 
-  .lessonsHeading {
-    font-size: 18px;
-    font-weight: 700;
-    color: rgba(32, 41, 104, 1);
+.lessonsHeading {
+  font-size: 18px;
+  font-weight: 700;
+  color: rgba(32, 41, 104, 1);
+}
+
+.taskHeading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.themeHeading {
+  font-size: 25px;
+}
+
+@media screen and (max-width: 1370px) {
+  .textStartContent_heading p {
+    margin: 3px 0;
+    font-size: 22px;
   }
-
-  .taskHeading {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .themeHeading {
-    font-size: 25px;
-  }
-
-  @media screen and (max-width: 1370px) {
-
-    .textStartContent_heading p {
-      margin: 3px 0;
-      font-size: 22px;
-  }
-
 }

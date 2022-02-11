@@ -12,16 +12,29 @@ import { TaskCheckFeedback } from './Components/TaskCheckFeedback/TaskCheckFeedb
 
 import {
   Task1,
-  Task2
+  Task2,
+  Task3
 } from './LessonsContent/index_lessons';
 
 
 const lessonsContent = [
   {
     id: "menu_1",
-    value: "Первый слайд",
+    value: "Диалоговый симулятор",
     href: 1,
     content: <Task1 />
+  },
+  {
+    id: "menu_1",
+    value: "Собери пазл",
+    href: 2,
+    content: <Task2 />
+  },
+  {
+    id: "menu_1",
+    value: "Найди Киви и Коко",
+    href: 3,
+    content: <Task3 />
   }
 ];
 

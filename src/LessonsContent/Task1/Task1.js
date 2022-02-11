@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect, useRef, useMemo } from "react";
 import "./Task1.css";
 import { Context } from "../../Context";
 import { HeadingText } from "../HeadingText/HeadingText";
+import parrotOpponent from "./img/kiwi.svg";
 
 
 // Контент модального окна - Алфавит
@@ -45,7 +46,11 @@ const ThemeHeading = () => (
 );
 // Текс title с переводом (НЕ поддерживает html тэги)
 const titleHeading = "First slide";
-
+const ParrotOpponent = ({ parrotStyle }) => (
+  <div className="parrotOpponent">
+    <img className="parrotOpponent" style={parrotStyle} src={parrotOpponent} alt="" />
+  </div>
+);
 
 function Task1() {
   const {
@@ -53,16 +58,7 @@ function Task1() {
     alphabetSetIcon,
     helpSetModalContent,
     alphabetSetModalContent,
-    lessonSetStartAction,
-    lessonSetResetTask,
-    resetTask,
-    lessonSetCheckTask,
-    checkTask,
-    lessonSetAndAnswer,
   } = useContext(Context);
-
-
-
   // Иконки правого поля  - (помощь и алфавит)
   useEffect(() => {
     //  helpSetIcon - иконка электронного помощника (включить - true, отключить - false)
@@ -71,10 +67,31 @@ function Task1() {
     alphabetSetIcon(true);
     helpSetModalContent(<HelpModalContent />);
     alphabetSetModalContent(<AlphabetModalContent />);
-
   }, []);
 
+  const [startDialog, setStartDialogue] = useState(false);
 
+
+  const dilogueParrotPhrase = useRef(null);
+
+
+  // useEffect(() => {
+  //     dilogueParrotPhrase.current.classList.remove("dialogueParrotPhraseActive");
+
+  // }, []);
+
+
+
+
+
+  const parrotOpponent = ({
+    zIndex: 100,
+    width: '300px',
+    position: 'absolute',
+    top: '45vh',
+    left: '4vw',
+
+  });
   //  Внесение изменений в контент задания
   return (
     <div className="lessonContent">
@@ -83,11 +100,27 @@ function Task1() {
         themeHeading={<ThemeHeading />}
         titleHeading={titleHeading}
         // soundSource={soundSource}
-        soundVisible={true}
-        titleVisible={true}
+        soundVisible={false} titleVisible={true}
       />
-      <div className="slideWrapper">
-        контент
+      <ParrotOpponent parrotStyle={parrotOpponent} />
+      <div className="dialogueWrapper">
+        { }
+        <div className="dialogueParrotField" >
+          <div className="dialogueParrotPhrase dialogueParrotPhraseActive" ref={dilogueParrotPhrase}>
+            <p>Hello!</p>
+          </div>
+        </div>
+
+
+
+        <div className="dialogueUserField">
+          <div className="dialogueUserPhrase dialogueUserPhraseActive" ref={dilogueParrotPhrase}>
+            <p>Hello!</p>
+          </div>
+        </div>
+
+
+
       </div>
     </div>
   );
