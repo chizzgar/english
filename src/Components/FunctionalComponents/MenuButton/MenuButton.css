@@ -1,0 +1,43 @@
+.menu-open-button {
+    margin-left: -3%;
+    cursor: pointer;
+    background: #ffff;
+    box-shadow: 0 0 10px rgb(162, 162, 162);
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 80px;
+    position: relative;
+}
+ 
+.menu-open-button:hover {
+    background: floralwhite;
+}
+ 
+.lines {
+    width: 25px;
+    height: 3px;
+    background: #596778;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -12.5px;
+    margin-top: -1.5px;
+}
+ 
+.line-1 {
+    width: 10px;
+    top: 32px;
+}
+ 
+.line-2 {
+    width: 15px;
+}
+ 
+.line-3 {
+    
+    top: 18px;
+}

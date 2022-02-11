@@ -1,0 +1,31 @@
+.footer {
+    /* align-self: center; */
+    border-top: 1px solid #EBEDF3;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #F9FBFF;
+    height: 115px;
+}
+
+.backButtonWrapper {
+   width: 33.32vw;
+   text-align: center;
+}
+
+.resetWrapper {
+    width: 33.32vw;
+    text-align: center;
+}
+
+.nextButtonWrapper {
+    width: 33.32vw;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 1370px) {
+    .footer {
+        height: 85px;
+    }
+}

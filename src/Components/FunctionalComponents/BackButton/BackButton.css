@@ -1,0 +1,24 @@
+.backButton {
+    background-color: #E1EAFC;
+    border: none;
+    color: #98A5BE;
+    width: 180px;
+    height: 65px;
+    border-radius: 12px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.backButton:hover {
+    background-color: #e1eafcab;
+}
+
+.notActive {
+    opacity: 0.3;
+}

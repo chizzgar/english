@@ -1,0 +1,65 @@
+.helpModal {
+    height: 100vh;
+    width: 100vw;
+    backdrop-filter: blur(2px);
+    position: fixed;
+    top: 190px;
+    left: 725px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0);
+    transition: all 0.2s ease;
+    z-index: 999;
+
+}
+
+.helpModal.active {
+    transform: scale(1);
+    top: 0;
+    left: 0;
+    transition: all 0.2s ease;
+}
+
+
+.helpModal__content {
+    padding: 40px;
+    border-radius: 12px;
+    background-color: #F3F6FF;
+    height: 50vh;
+    width: 50vw;
+   
+}
+
+
+.helpStyleParrotWrapper {
+    position: absolute;
+    top: 57vh;
+    left: 93vw;
+    cursor: pointer;
+}
+
+.helpStyleParrot {
+    width: 90%;
+    height: 90%;
+    transition: all 0.2s ease;
+}
+
+
+.helpStyleParrot:hover {
+    width: 100%;
+    height: 100%;
+    transition: all 0.2s ease;
+
+}
+
+@media screen and (max-width: 1370px) {
+    .helpStyleParrot {
+        width: 80%;
+        height: 80%;
+    }
+    .helpStyleParrot:hover {
+        width: 90%;
+        height: 90%;
+    }
+}

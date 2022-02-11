@@ -1,0 +1,33 @@
+.checkButton {
+  background-color: #3dd286;
+  border: none;
+  color: white;
+  width: 180px;
+  height: 65px;
+  border-radius: 12px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.checkButton:hover {
+  background-color: #3dd2859f;
+}
+
+.checkButton:active {
+  background-color: #32aa6c;
+}
+
+.checkBtn {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.checkText {
+  padding: 0 0 2px 0;
+}
