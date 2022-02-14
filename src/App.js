@@ -17,23 +17,24 @@ import {
 } from './LessonsContent/index_lessons';
 
 
+// {
+//   id: "menu_1",
+//   value: "Диалоговый симулятор",
+//   href: 1,
+//   content: <Task1 />
+// },
+
 const lessonsContent = [
   {
     id: "menu_1",
-    value: "Диалоговый симулятор",
-    href: 1,
-    content: <Task1 />
-  },
-  {
-    id: "menu_1",
     value: "Собери пазл",
-    href: 2,
+    href: 1,
     content: <Task2 />
   },
   {
-    id: "menu_1",
+    id: "menu_2",
     value: "Найди Киви и Коко",
-    href: 3,
+    href: 2,
     content: <Task3 />
   }
 ];
