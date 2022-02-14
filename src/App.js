@@ -13,7 +13,8 @@ import { TaskCheckFeedback } from './Components/TaskCheckFeedback/TaskCheckFeedb
 import {
   Task1,
   Task2,
-  Task3
+  Task3,
+  Task4
 } from './LessonsContent/index_lessons';
 
 
@@ -36,6 +37,12 @@ const lessonsContent = [
     value: "Найди Киви и Коко",
     href: 2,
     content: <Task3 />
+  },
+  {
+    id: "menu_3",
+    value: "Найди Киви и Коко",
+    href: 3,
+    content: <Task4 />
   }
 ];
 
