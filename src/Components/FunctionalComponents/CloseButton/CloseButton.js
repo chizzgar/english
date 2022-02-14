@@ -6,12 +6,12 @@ import './CloseButton.css';
 function CloseButton() {
 
     function onClickClose() {
-        alert('Вы закрыли приложение')
+        window.location.assign('https://chizzgar.github.io/tasks-stand/');
     }
 
     return (
 
-        <div className="closeButton" onClick={onClickClose}>
+        <div className="closeButton" onClick={onClickClose} title="Вернуться к списку курсов">
             <div className="line one"></div>
             <div className="line two"></div>
         </div>
