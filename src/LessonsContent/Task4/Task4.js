@@ -1,9 +1,10 @@
 import React, { useState, useContext, useEffect, useRef, useMemo } from "react";
-import "./Task4.css";
+import s from "./Task4.module.css";
 import { Context } from "../../Context";
 import { HeadingText } from "../HeadingText/HeadingText";
 
-
+import wrong from "./img/wrong.svg";
+import right from "./img/right.svg";
 // Контент модального окна - Алфавит
 const AlphabetModalContent = () => {
   return (
@@ -68,14 +69,14 @@ const words = [
 
 ];
 
-const Words = ({ words, handleKey }) => {
+const Words = ({ words, handleKey, handleBlur }) => {
   const wordsReady = words.map(word => word.word);
   return (
-    <p className="checkingWords">
+    <p className={s.checkingWords}>
       {wordsReady.map((word, index) => (
 
         <>
-          <span onKeyDown={handleKey} className="checkingWord" contentEditable="true" suppressContentEditableWarning={true}>
+          <span onKeyDown={handleKey} onBlur={handleBlur} className={s.checkingWord} contentEditable="true" suppressContentEditableWarning={true}>
             {word}
           </span>
           <span >
@@ -115,13 +116,21 @@ function Task4() {
   }, []);
 
   const [stateWords, setStateWords] = useState();
-  const [button, setButton] = useState();
+  const [sentenceAnswer, setSentenceAnswer] = useState(false);
+
+  const handleBlur = (e) => {
+    setStateWords(e.target.textContent);
+    console.log(stateWords)
+  }
+
 
   const handleKey = (e) => {
     if (e.keyCode === 13) {
       e.preventDefault();
-      setStateWords(e.target.textContent)
+      setStateWords(e.target.textContent);
       e.target.blur();
+      console.log(stateWords)
+
     }
   }
   //  Внесение изменений в контент задания
@@ -135,8 +144,9 @@ function Task4() {
         soundVisible={false}
         titleVisible={true}
       />
-      <div className="replaceWordsWrapper">
-        <Words words={words} handleKey={handleKey} />{button && <div>ok</div>}
+      <div className={s.replaceWordsWrapper}>
+        <div className={s.sentenseWrapper}><Words words={words} handleKey={handleKey} handleBlur={handleBlur} />{sentenceAnswer ? < img className={s.imgFeedBack} src={right} /> : <img className={s.imgFeedBack} src={wrong} />}</div>
+
       </div>
 
     </div>

@@ -191,7 +191,7 @@ function Task2() {
     draggingItem.onmouseup = function () {
       document.removeEventListener('mousemove', onMouseMove);
       draggingItem.style.cursor = 'grab';
-      if (elemBelow.classList.contains('wordPazzle_dropWord')) {
+      if (elemBelow.classList.contains(s.wordPazzle_dropWord)) {
 
         draggingItem.style.position = 'relative ';
         draggingItem.style.zIndex = null;

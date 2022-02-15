@@ -22,5 +22,17 @@
   transition: all 0.1s ease;
 }
 
+.sentenseWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgFeedBack {
+  margin-left: 10px;
+  height: 5%;
+}
+
 @media screen and (max-width: 1370px) {
 }
