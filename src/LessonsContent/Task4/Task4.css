@@ -17,7 +17,7 @@
 
 .checkingWord:hover {
   box-sizing: border-box;
-  outline: 2px solid rgb(59, 46, 250);
+  outline: 2px solid rgb(0, 0, 0);
   border-radius: 3px;
   transition: all 0.1s ease;
 }

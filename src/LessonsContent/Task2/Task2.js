@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect, useRef, useMemo } from "react";
-import "./Task2.css";
+import s from "./Task2.module.css";
 import { Context } from "../../Context";
 import { HeadingText } from "../HeadingText/HeadingText";
 
@@ -48,7 +48,7 @@ const titleHeading = "Перевод";
 const WordDrop = ({ itemsToImage }) => (
   <>
     {itemsToImage.map((image, index) => (
-      <div key={image.id + index} className="wordPazzle_dropWord" drop-data={image.data}></div>
+      <div key={image.id + index} className={s.wordPazzle_dropWord} drop-data={image.data}></div>
     ))}
   </>
 );
@@ -56,9 +56,9 @@ const WordDrop = ({ itemsToImage }) => (
 const LettersDrag = ({ itemsToImageReady, onMouseDown }) => (
   <>
     {itemsToImageReady.map((item, index) => (
-      <div key={item.id + index} className="wordPazzle_letter" onMouseDown={onMouseDown} drag-data={item.data}>
-        <img className="wordPazzle_letter_img" src={item.srcImage} alt="" draggable="false" />
-        <p className="wordPazzle_letter_p">{item.data}</p>
+      <div key={item.id + index} className={s.wordPazzle_letter} onMouseDown={onMouseDown} drag-data={item.data}>
+        <img className={s.wordPazzle_letter_img} src={item.srcImage} alt="" draggable="false" />
+        <p className={s.wordPazzle_letter_p}>{item.data}</p>
       </div>
     ))}
   </>
@@ -228,13 +228,13 @@ function Task2() {
         soundVisible={false} titleVisible={true}
       />
 
-      <div className="wordPazzleWrappere" >
+      <div className={s.wordPazzleWrappere} >
 
-        <div className="wordPazzle_dropWrapper" ref={dropPlace}>
+        <div className={s.wordPazzle_dropWrapper} ref={dropPlace}>
           <WordDrop itemsToImage={itemsToImage} />
         </div>
 
-        <div className="wordPazzle_letters" ref={dragPlace}>
+        <div className={s.wordPazzle_letters} ref={dragPlace}>
           <LettersDrag itemsToImageReady={itemsToImageReady} onMouseDown={mouseDown} />
 
         </div>

@@ -4,6 +4,7 @@
 }
 
 .motivationParrot {
+  overflow: hidden;
   z-index: 10000;
   position: absolute;
   top: 55vh;
@@ -13,6 +14,7 @@
 }
 
 .motivationTextCloud {
+  overflow: hidden;
   z-index: 10000;
   position: absolute;
   top: 38vh;
