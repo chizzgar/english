@@ -9,17 +9,19 @@ function Main(props) {
     const lesson = lessonsContent.find(lesson => lesson.link === targetLink);
 
     const navigate = useNavigate();
+    console.log(window.location.hash)
 
     useEffect(() => {
-        if (window.location.pathname === lessonsContent[0].link || window.location.pathname === '/') {
+        if (window.location.hash === `#${lessonsContent[0].link}` || window.location.hash === '') {
             navigate(lessonsContent[0].link);
         }
         else {
-            const urlLesson = lessonsContent.find(lesson => lesson.link === window.location.pathname);
+            const urlLesson = lessonsContent.find(lesson => `#${lesson.link}` === window.location.hash);
             lessonsTargetState(urlLesson?.href);
-            navigate(window.location.pathname);
-            lessonsTargetLink(window.location.pathname);
+            navigate(urlLesson.link);
+            lessonsTargetLink(urlLesson.link);
         }
+
     }, []);
 
 
