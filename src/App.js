@@ -7,7 +7,7 @@ import Footer from './Components/Footer/Footer.js';
 
 import { AlphabetModal } from './Components/ModalScreens/AlphabetModal/AlphabetModal.js';
 import { HelpModal } from './Components/ModalScreens/HelpModal/HelpModal.js';
-import { TaskCheckFeedback } from './Components/TaskCheckFeedback/TaskCheckFeedback.js'
+import { TaskCheckFeedback } from './Components/TaskCheckFeedback/TaskCheckFeedback.js';
 
 
 import {
@@ -30,25 +30,31 @@ const lessonsContent = [
     id: "menu_1",
     value: "Собери пазл",
     href: 1,
+    link: '/pazzle',
     content: <Task2 />
   },
   {
     id: "menu_2",
     value: "Найди Киви и Коко",
     href: 2,
+    link: '/findparrots',
     content: <Task3 />
   },
   {
     id: "menu_3",
-    value: "Найди Киви и Коко",
+    value: "Найди неправильное слово",
     href: 3,
+    link: '/findwords',
     content: <Task4 />
   }
 ];
 
 function App() {
+
   const lessonsNumber = lessonsContent.length;
   const [lessonNow, setLessonNow] = useState(1);
+
+  const [targetLink, setTargetLink] = useState(lessonsContent[0].link);
 
   const [startAction, setStartAction] = useState(false);
   const [finishAction, setFinishAction] = useState(false);
@@ -67,6 +73,10 @@ function App() {
 
   function lessonsTargetState(targetLeson) {
     setLessonNow(targetLeson);
+  };
+
+  function lessonsTargetLink(nowLink) {
+    setTargetLink(nowLink);
   };
 
   function lessonSetStartAction(startActionState) {
@@ -108,10 +118,14 @@ function App() {
 
 
   const appValueContext = {
+    lessonsContent,
     lessonsNumber,
 
     lessonsTargetState,
     lessonNow,
+
+    lessonsTargetLink,
+    targetLink,
 
     lessonSetStartAction,
     startAction,
@@ -147,7 +161,11 @@ function App() {
     <Context.Provider value={appValueContext}>
       <div className="appWrapper">
         <Header lessonsContent={lessonsContent} />
-        <Main lessonsContent={lessonsContent} />
+        <Main lessonsContent={lessonsContent}
+          targetLink={targetLink}
+          lessonsTargetState={lessonsTargetState}
+          lessonsTargetLink={lessonsTargetLink}
+        />
         {viewFeedback && <TaskCheckFeedback answer={answer} />}
         <AlphabetModal
           alphabetIcon={alphabetIcon}

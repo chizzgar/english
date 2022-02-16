@@ -1,18 +1,24 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './BackButton.css';
 import { Context } from '../../../Context'
+import { useNavigate } from 'react-router-dom';
 
 function BackButton() {
-    const { lessonsTargetState, lessonNow, lessonSetViewFeedback, startAction, lessonSetAndAnswer, answer, lessonsNumber, lessonSetStartAction, lessonSetFinishAction } = useContext(Context);
+    const { lessonsTargetState,
+        lessonNow,
+        lessonSetViewFeedback,
+        startAction,
+        lessonSetAndAnswer,
+        answer,
+        lessonsNumber,
+        lessonSetStartAction,
+        lessonSetFinishAction,
+        lessonsContent,
+        lessonsTargetLink,
+        targetLink, } = useContext(Context);
 
-    useEffect(() => {
-        if (!answer) {
 
-        }
-
-
-    }, [answer,]);
-
+    const navigate = useNavigate();
 
 
     function onClickBack() {
@@ -21,6 +27,8 @@ function BackButton() {
             return;
         }
         lessonsTargetState(previousLesson);
+        lessonsTargetLink(lessonsContent[previousLesson - 1].link);
+        navigate(lessonsContent[previousLesson - 1].link);
         lessonSetViewFeedback(false);
         lessonSetAndAnswer(false);
         lessonSetFinishAction(false);

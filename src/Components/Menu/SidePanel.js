@@ -1,11 +1,13 @@
 import React, { useState, useCallback, useContext, useRef } from 'react';
 import './SidePanel.css';
 import { Context } from '../../Context';
+import { Link } from 'react-router-dom';
 
-const Menu = ({ items, lessonsTargetState, lessonSetStartAction, lessonSetViewFeedback, lessonSetFinishAction }) => {
+const Menu = ({ items, lessonsTargetState, lessonSetStartAction, lessonSetViewFeedback, lessonSetFinishAction, lessonsContent, lessonsTargetLink }) => {
     const [menuItemTarget, setMenuItemTarget] = useState(undefined);
     const handlerMenuClick = (event, item) => {
         lessonsTargetState(item.href);
+        lessonsTargetLink(item.link);
         setMenuItemTarget(event.target);
         lessonSetStartAction(false);
         lessonSetFinishAction(false);
@@ -18,16 +20,18 @@ const Menu = ({ items, lessonsTargetState, lessonSetStartAction, lessonSetViewFe
     return (
         <ul className="lessonsMenu">
             {items.map(item => (
-                <li key={item.id} onClick={(event) => handlerMenuClick(event, item)}>
-                    <span>{item.value}</span>
-                </li>
+                <Link to={item.link} style={{ textDecoration: 'none', color: 'black' }}>
+                    <li key={item.id} onClick={(event) => handlerMenuClick(event, item)}>
+                        <span>{item.value}</span>
+                    </li>
+                </Link>
             ))}
         </ul>
     )
 };
 
 function SidePanel(props) {
-    const { lessonSetStartAction, lessonSetViewFeedback, lessonSetFinishAction } = useContext(Context);
+    const { lessonSetStartAction, lessonSetViewFeedback, lessonSetFinishAction, lessonsTargetLink } = useContext(Context);
     const { itemsMenu, active, setActiveMenu } = props;
     const { lessonsTargetState } = useContext(Context);
     function onClickMenu() {
@@ -52,6 +56,7 @@ function SidePanel(props) {
                         lessonSetStartAction={lessonSetStartAction}
                         lessonSetViewFeedback={lessonSetViewFeedback}
                         lessonSetFinishAction={lessonSetFinishAction}
+                        lessonsTargetLink={lessonsTargetLink}
                     />
                 </div>
             </div>

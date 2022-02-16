@@ -144,7 +144,7 @@ function Task4() {
         soundVisible={false}
         titleVisible={true}
       />
-      <div className={s.replaceWordsWrapper}>
+      <div className={s.replaceWordsWrapper} >
         <div className={s.sentenseWrapper}><Words words={words} handleKey={handleKey} handleBlur={handleBlur} />{sentenceAnswer ? < img className={s.imgFeedBack} src={right} /> : <img className={s.imgFeedBack} src={wrong} />}</div>
 
       </div>
