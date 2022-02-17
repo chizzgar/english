@@ -2,14 +2,13 @@ import React, { useContext, useEffect, useSate, useMemo } from 'react';
 import './Main.css';
 import { useState } from 'react';
 import { Context } from '../../Context';
-import { Routes, Route, useNavigate, useSearchParams, useParams } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 function Main(props) {
     const { lessonsContent, targetLink, lessonsTargetState, lessonsTargetLink } = props;
     const lesson = lessonsContent.find(lesson => lesson.link === targetLink);
 
     const navigate = useNavigate();
-    console.log(window.location.hash)
 
     useEffect(() => {
         if (window.location.hash === `#${lessonsContent[0].link}` || window.location.hash === '') {

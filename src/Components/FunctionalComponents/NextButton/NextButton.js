@@ -6,7 +6,17 @@ import { useNavigate } from 'react-router-dom';
 
 
 function NextButton() {
-    const { lessonsTargetState, lessonNow, lessonsNumber, lessonSetViewFeedback, lessonSetAndAnswer, lessonSetFinishAction, lessonsTargetLink, lessonsContent, targetLink } = useContext(Context);
+    const { lessonsTargetState,
+        lessonNow,
+        lessonsNumber,
+        lessonSetViewFeedback,
+        lessonSetAndAnswer,
+        lessonSetFinishAction,
+        lessonsTargetLink,
+        lessonsContent,
+        targetLink
+    } = useContext(Context);
+
     const navigate = useNavigate();
 
     function onClickNext() {

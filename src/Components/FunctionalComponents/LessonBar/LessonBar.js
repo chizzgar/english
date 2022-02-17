@@ -4,7 +4,7 @@ import { Context } from '../../../Context';
 
 
 function LessonBar() {
-    const { lessonsNumber, lessonNow, lessonsContent, targetLink } = useContext(Context);
+    const { lessonsNumber, lessonNow } = useContext(Context);
 
     const targetLesson = () => {
         return lessonNow;

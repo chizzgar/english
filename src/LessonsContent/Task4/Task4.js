@@ -5,6 +5,8 @@ import { HeadingText } from "../HeadingText/HeadingText";
 
 import wrong from "./img/wrong.svg";
 import right from "./img/right.svg";
+
+
 // Контент модального окна - Алфавит
 const AlphabetModalContent = () => {
   return (
@@ -44,16 +46,18 @@ const ThemeHeading = () => (
 // Текс title с переводом (НЕ поддерживает html тэги)
 const titleHeading = "Перевод";
 
-const words = [
+const wordsFirst = [
   {
     id: 'id_1',
     word: 'There',
-    status: true
+    status: true,
+    rightWord: '',
   },
   {
     id: 'id_2',
     word: 'were',
-    status: true
+    status: true,
+    rightWord: '',
   },
   {
     id: 'id_3',
@@ -64,17 +68,110 @@ const words = [
   {
     id: 'id_4',
     word: 'spoons',
-    status: true
+    status: true,
+    rightWord: '',
   }
 
 ];
 
-const Words = ({ words, handleKey, handleBlur }) => {
+const wordsSecond = [
+  {
+    id: 'id_1',
+    word: 'There',
+    status: true,
+    rightWord: '',
+  },
+  {
+    id: 'id_2',
+    word: 'was',
+    status: true,
+    rightWord: '',
+  },
+  {
+    id: 'id_3',
+    word: 'chicken',
+    status: true,
+    rightWord: '',
+  },
+  {
+    id: 'id_4',
+    word: 'in',
+    status: true,
+    rightWord: '',
+  },
+  {
+    id: 'id_5',
+    word: 'the',
+    status: true,
+    rightWord: '',
+  },
+  {
+    id: 'id_6',
+    word: 'cupboard',
+    status: false,
+    rightWord: 'fridge',
+  }
+
+];
+
+
+const wordsThird = [
+  {
+    id: 'id_1',
+    word: 'There',
+    status: true,
+    rightWord: '',
+  },
+  {
+    id: 'id_2',
+    word: 'was',
+    status: false,
+    rightWord: 'were',
+  },
+  {
+    id: 'id_3',
+    word: 'dirty ',
+    status: true,
+    rightWord: '',
+  },
+  {
+    id: 'id_4',
+    word: 'forks',
+    status: true,
+    rightWord: '',
+  },
+  {
+    id: 'id_5',
+    word: 'knives',
+    status: true,
+    rightWord: '',
+  },
+  {
+    id: 'id_6',
+    word: 'plates ',
+    status: true,
+    rightWord: '',
+  },
+  {
+    id: 'id_7',
+    word: 'and',
+    status: true,
+    rightWord: '',
+  },
+  {
+    id: 'id_8',
+    word: 'glasses',
+    status: true,
+    rightWord: '',
+  }
+
+];
+
+const SentenceFirst = ({ words, handleKey, handleBlur, link }) => {
   const wordsReady = words.map(word => word.word);
   return (
-    <p className={s.checkingWords}>
+    <p className={s.checkingWords} ref={link}>
       {wordsReady.map((word, index) => (
-
         <>
           <span onKeyDown={handleKey} onBlur={handleBlur} className={s.checkingWord} contentEditable="true" suppressContentEditableWarning={true}>
             {word}
@@ -89,6 +186,43 @@ const Words = ({ words, handleKey, handleBlur }) => {
   )
 }
 
+const SentenceSecond = ({ words, handleKey, handleBlur, link }) => {
+  const wordsReady = words.map(word => word.word);
+  return (
+    <p className={s.checkingWords} ref={link}>
+      {wordsReady.map((word, index) => (
+        <>
+          <span onKeyDown={handleKey} onBlur={handleBlur} className={s.checkingWord} contentEditable="true" suppressContentEditableWarning={true}>
+            {word}
+          </span>
+          <span >
+            {index === wordsReady.length - 1 ? '.' : ' '}
+          </span>
+        </>
+      )
+      )}
+    </p>
+  )
+}
+
+const SentenceThird = ({ words, handleKey, handleBlur, link }) => {
+  const wordsReady = words.map(word => word.word);
+  return (
+    <p className={s.checkingWords} ref={link}>
+      {wordsReady.map((word, index) => (
+        <>
+          <span onKeyDown={handleKey} onBlur={handleBlur} className={s.checkingWord} contentEditable="true" suppressContentEditableWarning={true}>
+            {word}
+          </span>
+          <span >
+            {index === wordsReady.length - 1 ? '.' : ' '}
+          </span>
+        </>
+      )
+      )}
+    </p>
+  )
+}
 
 function Task4() {
   const {
@@ -114,25 +248,85 @@ function Task4() {
     helpSetModalContent(<HelpModalContent />);
     alphabetSetModalContent(<AlphabetModalContent />);
   }, []);
+  const firstSent = useRef(null);
+  const secondSent = useRef(null);
+  const thirdSent = useRef(null);
 
-  const [stateWords, setStateWords] = useState();
-  const [sentenceAnswer, setSentenceAnswer] = useState(false);
+  const [firstSentenceUser, setFirstSentenseUser] = useState();
+  const [firstSentenceFeedBack, setFirstSentenscFeedBack] = useState(false);
+  const [firstSentenceAnswer, setFirstSentenceAnswer] = useState();
+
+  const [secondSentenceUser, setSecondSentenseUser] = useState();
+  const [secondSentenceFeedBack, setSecondSentenscFeedBack] = useState(false);
+  const [secondSentenceAnswer, setSecondSentenceAnswer] = useState();
+
+  const [thirdSentenceUser, setThirdSentenseUser] = useState();
+  const [thirdSentenceFeedBack, setThirdSentenscFeedBack] = useState(false);
+  const [thirdSentenceAnswer, setThirdSentenceAnswer] = useState();
+
+  useEffect(() => {
+    if (checkTask) {
+      const firstSentenceRightVar = wordsFirst.map(word => word.status ? word.word : word.rightWord);
+      setFirstSentenceAnswer(checkSentence(wordsFirst, firstSentenceUser, firstSentenceRightVar));
+      setFirstSentenscFeedBack(true);
+
+      const secondSentenceRightVar = wordsSecond.map(word => word.status ? word.word : word.rightWord);
+      setSecondSentenceAnswer(checkSentence(wordsSecond, secondSentenceUser, secondSentenceRightVar));
+      setSecondSentenscFeedBack(true);
+
+      const thirdSentenceRightVar = wordsThird.map(word => word.status ? word.word : word.rightWord);
+      setThirdSentenceAnswer(checkSentence(wordsThird, thirdSentenceUser, thirdSentenceRightVar));
+      setThirdSentenscFeedBack(true);
+    }
+    lessonSetCheckTask(false);
+  }, [checkTask])
+
+
+
+  const checkSentence = (words, SentenceUser, SentenceRightVar) => {
+    let count = 0;
+    const winCount = words.length;
+    SentenceRightVar.forEach((word, i) => {
+      if (word === SentenceUser[i]) {
+        count++;
+      }
+    });
+    if (count === winCount) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  };
+
+
 
   const handleBlur = (e) => {
-    setStateWords(e.target.textContent);
-    console.log(stateWords)
+    // setFirstSentenseUser(e.target.textContent);
+    lessonSetStartAction(true);
+    setFirstSentenseUser(getUserSentence(firstSent));
+    setSecondSentenseUser(getUserSentence(secondSent));
+    setThirdSentenseUser(getUserSentence(thirdSent));
   }
-
 
   const handleKey = (e) => {
     if (e.keyCode === 13) {
       e.preventDefault();
-      setStateWords(e.target.textContent);
+      // setFirstSentenseUser(e.target.textContent);
       e.target.blur();
-      console.log(stateWords)
+      lessonSetStartAction(true);
+      setFirstSentenseUser(getUserSentence(firstSent));
+      setSecondSentenseUser(getUserSentence(secondSent));
+      setThirdSentenseUser(getUserSentence(thirdSent));
 
     }
   }
+
+  const getUserSentence = (sentence) => {
+    return Array.from(sentence.current.childNodes).map(word => word.textContent).filter(word => word != ' ' && word != '.');
+
+  }
+
   //  Внесение изменений в контент задания
   return (
     <div className="lessonContent">
@@ -145,7 +339,15 @@ function Task4() {
         titleVisible={true}
       />
       <div className={s.replaceWordsWrapper} >
-        <div className={s.sentenseWrapper}><Words words={words} handleKey={handleKey} handleBlur={handleBlur} />{sentenceAnswer ? < img className={s.imgFeedBack} src={right} /> : <img className={s.imgFeedBack} src={wrong} />}</div>
+        <div className={s.sentenseWrapper}>
+          <SentenceFirst words={wordsFirst} handleKey={handleKey} handleBlur={handleBlur} link={firstSent} />{firstSentenceFeedBack ? firstSentenceAnswer ? < img className={s.imgFeedBack} src={right} /> : <img className={s.imgFeedBack} src={wrong} /> : ''}
+        </div>
+        <div className={s.sentenseWrapper}>
+          <SentenceSecond words={wordsSecond} handleKey={handleKey} handleBlur={handleBlur} link={secondSent} />{secondSentenceFeedBack ? secondSentenceAnswer ? < img className={s.imgFeedBack} src={right} /> : <img className={s.imgFeedBack} src={wrong} /> : ''}
+        </div>
+        <div className={s.sentenseWrapper}>
+          <SentenceThird words={wordsThird} handleKey={handleKey} handleBlur={handleBlur} link={thirdSent} />{thirdSentenceFeedBack ? thirdSentenceAnswer ? < img className={s.imgFeedBack} src={right} /> : <img className={s.imgFeedBack} src={wrong} /> : ''}
+        </div>
 
       </div>
 

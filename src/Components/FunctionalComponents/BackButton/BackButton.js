@@ -15,7 +15,8 @@ function BackButton() {
         lessonSetFinishAction,
         lessonsContent,
         lessonsTargetLink,
-        targetLink, } = useContext(Context);
+        targetLink
+    } = useContext(Context);
 
 
     const navigate = useNavigate();
