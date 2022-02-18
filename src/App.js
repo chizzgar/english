@@ -14,7 +14,8 @@ import {
   Task1,
   Task2,
   Task3,
-  Task4
+  Task4,
+  Task5
 } from './LessonsContent/index_lessons';
 
 
@@ -46,6 +47,13 @@ const lessonsContent = [
     href: 3,
     link: '/findwords',
     content: <Task4 />
+  },
+  {
+    id: "menu_4",
+    value: "Найди неправильное слово",
+    href: 4,
+    link: '/find_pairs',
+    content: <Task5 />
   }
 ];
 

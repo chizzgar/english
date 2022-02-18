@@ -168,57 +168,57 @@ const wordsThird = [
 
 ];
 
-const SentenceFirst = ({ words, handleKey, handleBlur, link }) => {
+const SentenceFirst = ({ words, handleKey, handleBlur, link, handleClick }) => {
   const wordsReady = words.map(word => word.word);
   return (
     <p className={s.checkingWords} ref={link}>
       {wordsReady.map((word, index) => (
-        <>
-          <span onKeyDown={handleKey} onBlur={handleBlur} className={s.checkingWord} contentEditable="true" suppressContentEditableWarning={true}>
+        <React.Fragment key={index.toString()}>
+          <span onClick={handleClick} onKeyDown={handleKey} onBlur={handleBlur} className={s.checkingWord} contentEditable="true" suppressContentEditableWarning={true}>
             {word}
           </span>
           <span >
             {index === wordsReady.length - 1 ? '.' : ' '}
           </span>
-        </>
+        </React.Fragment>
+      )
+      )}
+    </p >
+  )
+}
+
+const SentenceSecond = ({ words, handleKey, handleBlur, link, handleClick }) => {
+  const wordsReady = words.map(word => word.word);
+  return (
+    <p className={s.checkingWords} ref={link}>
+      {wordsReady.map((word, index) => (
+        <React.Fragment key={index.toString()}>
+          <span onClick={handleClick} onKeyDown={handleKey} onBlur={handleBlur} className={s.checkingWord} contentEditable="true" suppressContentEditableWarning={true}>
+            {word}
+          </span>
+          <span >
+            {index === wordsReady.length - 1 ? '.' : ' '}
+          </span>
+        </React.Fragment>
       )
       )}
     </p>
   )
 }
 
-const SentenceSecond = ({ words, handleKey, handleBlur, link }) => {
+const SentenceThird = ({ words, handleKey, handleBlur, link, handleClick }) => {
   const wordsReady = words.map(word => word.word);
   return (
     <p className={s.checkingWords} ref={link}>
       {wordsReady.map((word, index) => (
-        <>
-          <span onKeyDown={handleKey} onBlur={handleBlur} className={s.checkingWord} contentEditable="true" suppressContentEditableWarning={true}>
+        <React.Fragment key={index.toString()}>
+          <span onClick={handleClick} onKeyDown={handleKey} onBlur={handleBlur} className={s.checkingWord} contentEditable="true" suppressContentEditableWarning={true}>
             {word}
           </span>
           <span >
             {index === wordsReady.length - 1 ? '.' : ' '}
           </span>
-        </>
-      )
-      )}
-    </p>
-  )
-}
-
-const SentenceThird = ({ words, handleKey, handleBlur, link }) => {
-  const wordsReady = words.map(word => word.word);
-  return (
-    <p className={s.checkingWords} ref={link}>
-      {wordsReady.map((word, index) => (
-        <>
-          <span onKeyDown={handleKey} onBlur={handleBlur} className={s.checkingWord} contentEditable="true" suppressContentEditableWarning={true}>
-            {word}
-          </span>
-          <span >
-            {index === wordsReady.length - 1 ? '.' : ' '}
-          </span>
-        </>
+        </React.Fragment>
       )
       )}
     </p>
@@ -281,7 +281,6 @@ function Task4() {
 
 
   useEffect(() => {
-    console.log(firstSentenceAnswer, secondSentenceAnswer, secondSentenceAnswer)
     if (firstSentenceAnswer && secondSentenceAnswer && thirdSentenceAnswer) {
       console.log('win')
       lessonSetAndAnswer(true);
@@ -289,7 +288,7 @@ function Task4() {
     else {
       lessonSetAndAnswer(false);
     }
-  }, [firstSentenceAnswer, secondSentenceAnswer, secondSentenceAnswer])
+  }, [firstSentenceAnswer, secondSentenceAnswer, secondSentenceAnswer, checkTask])
 
   useEffect(() => {
     if (checkTask) {
@@ -325,6 +324,10 @@ function Task4() {
     }
   };
 
+  const handleClick = () => {
+    lessonSetStartAction(true);
+    lessonSetViewFeedback(false);
+  }
 
 
   const handleBlur = (e) => {
@@ -340,7 +343,7 @@ function Task4() {
       e.preventDefault();
       // setFirstSentenseUser(e.target.textContent);
       e.target.blur();
-      lessonSetStartAction(true);
+
       setFirstSentenseUser(getUserSentence(firstSent));
       setSecondSentenseUser(getUserSentence(secondSent));
       setThirdSentenseUser(getUserSentence(thirdSent));
@@ -366,13 +369,13 @@ function Task4() {
       />
       <div className={s.replaceWordsWrapper} >
         <div className={s.sentenseWrapper}>
-          <SentenceFirst key={reset} words={wordsFirst} handleKey={handleKey} handleBlur={handleBlur} link={firstSent} />{firstSentenceFeedBack ? firstSentenceAnswer ? < img className={s.imgFeedBack} alt="" src={right} /> : <img className={s.imgFeedBack} alt="" src={wrong} /> : ''}
+          <SentenceFirst key={reset} words={wordsFirst} handleClick={handleClick} handleKey={handleKey} handleBlur={handleBlur} link={firstSent} />{firstSentenceFeedBack ? firstSentenceAnswer ? < img className={s.imgFeedBack} alt="" src={right} /> : <img className={s.imgFeedBack} alt="" src={wrong} /> : ''}
         </div>
         <div className={s.sentenseWrapper}>
-          <SentenceSecond key={reset} words={wordsSecond} handleKey={handleKey} handleBlur={handleBlur} link={secondSent} />{secondSentenceFeedBack ? secondSentenceAnswer ? < img className={s.imgFeedBack} alt="" src={right} /> : <img className={s.imgFeedBack} alt="" src={wrong} /> : ''}
+          <SentenceSecond key={reset} words={wordsSecond} handleClick={handleClick} handleBlur={handleBlur} link={secondSent} />{secondSentenceFeedBack ? secondSentenceAnswer ? < img className={s.imgFeedBack} alt="" src={right} /> : <img className={s.imgFeedBack} alt="" src={wrong} /> : ''}
         </div>
         <div className={s.sentenseWrapper}>
-          <SentenceThird key={reset} words={wordsThird} handleKey={handleKey} handleBlur={handleBlur} link={thirdSent} />{thirdSentenceFeedBack ? thirdSentenceAnswer ? < img className={s.imgFeedBack} alt="" src={right} /> : <img className={s.imgFeedBack} alt="" src={wrong} /> : ''}
+          <SentenceThird key={reset} words={wordsThird} handleClick={handleClick} handleKey={handleKey} handleBlur={handleBlur} link={thirdSent} />{thirdSentenceFeedBack ? thirdSentenceAnswer ? < img className={s.imgFeedBack} alt="" src={right} /> : <img className={s.imgFeedBack} alt="" src={wrong} /> : ''}
         </div>
 
       </div>

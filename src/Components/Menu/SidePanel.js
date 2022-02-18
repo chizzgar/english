@@ -20,8 +20,8 @@ const Menu = ({ items, lessonsTargetState, lessonSetStartAction, lessonSetViewFe
     return (
         <ul className="lessonsMenu">
             {items.map(item => (
-                <Link to={item.link} style={{ textDecoration: 'none', color: 'black' }}>
-                    <li key={item.id} onClick={(event) => handlerMenuClick(event, item)}>
+                <Link to={item.link} key={item.id} style={{ textDecoration: 'none', color: 'black' }}>
+                    <li onClick={(event) => handlerMenuClick(event, item)}>
                         <span>{item.value}</span>
                     </li>
                 </Link>
