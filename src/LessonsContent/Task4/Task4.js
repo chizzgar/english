@@ -6,6 +6,8 @@ import { HeadingText } from "../HeadingText/HeadingText";
 import wrong from "./img/wrong.svg";
 import right from "./img/right.svg";
 
+import answerRigth from "./img/answerRigth.png";
+import icon from "../../Components/ModalScreens/HelpModal/parrotHelp.svg";
 
 // Контент модального окна - Алфавит
 const AlphabetModalContent = () => {
@@ -24,7 +26,7 @@ const HelpModalContent = () => {
     <>
       <h3>Электронный помощник</h3>
       <br />
-      <p>Контент направленный на помощь в обучении</p>
+      <p><img alt="" src={answerRigth} width='90%' /></p>
     </>
   );
 };
@@ -40,12 +42,11 @@ const LessonHeading = () => (
 // Заголовок с заданием к уроку ( <> текст размещать внутри тэгов </> )
 const ThemeHeading = () => (
   <>
-    <p style={{ textAlign: "center" }}>Найди неправильное слово и замени его</p>
+    <p style={{ textAlign: "center" }}>Найди неправильное слово и замени его (правильный ответ в <img alt="" src={icon} width="3%" />)</p>
   </>
 );
 // Текс title с переводом (НЕ поддерживает html тэги)
 const titleHeading = "Перевод";
-
 const wordsFirst = [
   {
     id: 'id_1',
@@ -130,7 +131,7 @@ const wordsThird = [
   },
   {
     id: 'id_3',
-    word: 'dirty ',
+    word: 'dirty',
     status: true,
     rightWord: '',
   },
@@ -148,7 +149,7 @@ const wordsThird = [
   },
   {
     id: 'id_6',
-    word: 'plates ',
+    word: 'plates',
     status: true,
     rightWord: '',
   },
@@ -264,6 +265,32 @@ function Task4() {
   const [thirdSentenceFeedBack, setThirdSentenscFeedBack] = useState(false);
   const [thirdSentenceAnswer, setThirdSentenceAnswer] = useState();
 
+  const [reset, setReset] = useState(false);
+
+
+  useEffect(() => {
+    if (resetTask) {
+      setFirstSentenscFeedBack(false);
+      setSecondSentenscFeedBack(false);
+      setThirdSentenscFeedBack(false);
+      setReset(true);
+    }
+    lessonSetResetTask(false);
+  }, [resetTask])
+
+
+
+  useEffect(() => {
+    console.log(firstSentenceAnswer, secondSentenceAnswer, secondSentenceAnswer)
+    if (firstSentenceAnswer && secondSentenceAnswer && thirdSentenceAnswer) {
+      console.log('win')
+      lessonSetAndAnswer(true);
+    }
+    else {
+      lessonSetAndAnswer(false);
+    }
+  }, [firstSentenceAnswer, secondSentenceAnswer, secondSentenceAnswer])
+
   useEffect(() => {
     if (checkTask) {
       const firstSentenceRightVar = wordsFirst.map(word => word.status ? word.word : word.rightWord);
@@ -280,7 +307,6 @@ function Task4() {
     }
     lessonSetCheckTask(false);
   }, [checkTask])
-
 
 
   const checkSentence = (words, SentenceUser, SentenceRightVar) => {
@@ -323,9 +349,9 @@ function Task4() {
   }
 
   const getUserSentence = (sentence) => {
-    return Array.from(sentence.current.childNodes).map(word => word.textContent).filter(word => word != ' ' && word != '.');
-
+    return Array.from(sentence.current.childNodes).map(word => word.textContent).filter(word => word !== ' ' && word !== '.');
   }
+
 
   //  Внесение изменений в контент задания
   return (
@@ -340,13 +366,13 @@ function Task4() {
       />
       <div className={s.replaceWordsWrapper} >
         <div className={s.sentenseWrapper}>
-          <SentenceFirst words={wordsFirst} handleKey={handleKey} handleBlur={handleBlur} link={firstSent} />{firstSentenceFeedBack ? firstSentenceAnswer ? < img className={s.imgFeedBack} src={right} /> : <img className={s.imgFeedBack} src={wrong} /> : ''}
+          <SentenceFirst key={reset} words={wordsFirst} handleKey={handleKey} handleBlur={handleBlur} link={firstSent} />{firstSentenceFeedBack ? firstSentenceAnswer ? < img className={s.imgFeedBack} alt="" src={right} /> : <img className={s.imgFeedBack} alt="" src={wrong} /> : ''}
         </div>
         <div className={s.sentenseWrapper}>
-          <SentenceSecond words={wordsSecond} handleKey={handleKey} handleBlur={handleBlur} link={secondSent} />{secondSentenceFeedBack ? secondSentenceAnswer ? < img className={s.imgFeedBack} src={right} /> : <img className={s.imgFeedBack} src={wrong} /> : ''}
+          <SentenceSecond key={reset} words={wordsSecond} handleKey={handleKey} handleBlur={handleBlur} link={secondSent} />{secondSentenceFeedBack ? secondSentenceAnswer ? < img className={s.imgFeedBack} alt="" src={right} /> : <img className={s.imgFeedBack} alt="" src={wrong} /> : ''}
         </div>
         <div className={s.sentenseWrapper}>
-          <SentenceThird words={wordsThird} handleKey={handleKey} handleBlur={handleBlur} link={thirdSent} />{thirdSentenceFeedBack ? thirdSentenceAnswer ? < img className={s.imgFeedBack} src={right} /> : <img className={s.imgFeedBack} src={wrong} /> : ''}
+          <SentenceThird key={reset} words={wordsThird} handleKey={handleKey} handleBlur={handleBlur} link={thirdSent} />{thirdSentenceFeedBack ? thirdSentenceAnswer ? < img className={s.imgFeedBack} alt="" src={right} /> : <img className={s.imgFeedBack} alt="" src={wrong} /> : ''}
         </div>
 
       </div>
