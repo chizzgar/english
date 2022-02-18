@@ -273,7 +273,7 @@ function Task4() {
       setFirstSentenscFeedBack(false);
       setSecondSentenscFeedBack(false);
       setThirdSentenscFeedBack(false);
-      setReset(true);
+      setReset(!reset);
     }
     lessonSetResetTask(false);
   }, [resetTask])
