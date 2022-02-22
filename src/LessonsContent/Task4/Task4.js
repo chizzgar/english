@@ -137,13 +137,13 @@ const wordsThird = [
   },
   {
     id: 'id_4',
-    word: 'forks',
+    word: 'forks,',
     status: true,
     rightWord: '',
   },
   {
     id: 'id_5',
-    word: 'knives',
+    word: 'knives,',
     status: true,
     rightWord: '',
   },
@@ -372,7 +372,7 @@ function Task4() {
           <SentenceFirst key={reset} words={wordsFirst} handleClick={handleClick} handleKey={handleKey} handleBlur={handleBlur} link={firstSent} />{firstSentenceFeedBack ? firstSentenceAnswer ? < img className={s.imgFeedBack} alt="" src={right} /> : <img className={s.imgFeedBack} alt="" src={wrong} /> : ''}
         </div>
         <div className={s.sentenseWrapper}>
-          <SentenceSecond key={reset} words={wordsSecond} handleClick={handleClick} handleBlur={handleBlur} link={secondSent} />{secondSentenceFeedBack ? secondSentenceAnswer ? < img className={s.imgFeedBack} alt="" src={right} /> : <img className={s.imgFeedBack} alt="" src={wrong} /> : ''}
+          <SentenceSecond key={reset} words={wordsSecond} handleClick={handleClick} handleKey={handleKey} handleBlur={handleBlur} link={secondSent} />{secondSentenceFeedBack ? secondSentenceAnswer ? < img className={s.imgFeedBack} alt="" src={right} /> : <img className={s.imgFeedBack} alt="" src={wrong} /> : ''}
         </div>
         <div className={s.sentenseWrapper}>
           <SentenceThird key={reset} words={wordsThird} handleClick={handleClick} handleKey={handleKey} handleBlur={handleBlur} link={thirdSent} />{thirdSentenceFeedBack ? thirdSentenceAnswer ? < img className={s.imgFeedBack} alt="" src={right} /> : <img className={s.imgFeedBack} alt="" src={wrong} /> : ''}
