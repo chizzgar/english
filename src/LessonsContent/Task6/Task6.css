@@ -1,5 +1,9 @@
-.sentenceWrapper {
-  /* border: 1px solid black; */
+.sentencesWrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .sentenceWrapper {
@@ -8,7 +12,13 @@
   align-items: center;
   justify-content: center;
 }
-
+.sentencesBox {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  font-size: 2rem;
+  margin: 0 3px;
+}
 .singleWord {
   pointer-events: none;
 }
@@ -17,12 +27,12 @@
   position: relative;
   cursor: grab;
   font-size: 2rem;
-  margin: 0 5px;
+  margin: 0 3px;
   box-sizing: border-box;
-  box-shadow: 0 0 10px rgb(162, 162, 162);
-  border-radius: 7px;
+  /* box-shadow: 0 0 10px rgb(162, 162, 162); */
+  /* border-radius: 7px; */
   padding: 5px 5px;
-  background-color: rgb(197, 232, 255);
+  /* background-color: rgb(217, 238, 252); */
 }
 
 .draggableWord p {
