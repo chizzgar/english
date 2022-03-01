@@ -233,9 +233,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 });
 
 
-// const SentencesBox = ({ words }) => (
-//   <Sentences words={words} /></div>
-// );
+
 
 const Sentences = ({ words }) => (
   <Droppable droppableId="droppable" direction="horizontal">
