@@ -15,7 +15,8 @@ import {
   Task2,
   Task3,
   Task4,
-  Task5
+  Task5,
+  Task6
 } from './LessonsContent/index_lessons';
 
 
@@ -50,10 +51,17 @@ const lessonsContent = [
   },
   {
     id: "menu_4",
-    value: "Найди неправильное слово",
+    value: "Найди одинаковые пары",
     href: 4,
     link: '/find_pairs',
     content: <Task5 />
+  },
+  {
+    id: "menu_5",
+    value: "Правильный порядок слов",
+    href: 5,
+    link: '/word_order',
+    content: <Task6 />
   }
 ];
 

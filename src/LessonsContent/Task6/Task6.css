@@ -1,92 +1,33 @@
-.memoryCardsWrapper {
-  /* width: 90%; */
-  width: 1000px;
-  height: 80%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  box-sizing: border-box;
+.sentenceWrapper {
+  /* border: 1px solid black; */
 }
 
-.flip-card {
-  /* width: calc(100% / 4 - 10px); */
-  width: 220px;
-  /* height: calc(50% - 10px); */
-  height: 220px;
-  perspective: 1000px;
-  box-sizing: border-box;
-  /* margin-right: 10px; */
-}
-
-.memoryCard {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  box-sizing: border-box;
-}
-
-.memoryCardCover {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background: url(img/leprechaun.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  /* border: 12px; */
-  /* border: 1px solid #99999b; */
-  border-radius: 50px;
-  box-shadow: -5px -5px 15px #ffffff, 5px 5px 15px #e9ecf4;
-  z-index: 10;
-  backface-visibility: hidden;
-  box-sizing: border-box;
-}
-
-.memoryCardCover:hover {
-  box-shadow: -5px -5px 15px #b8b7b7, 5px 5px 15px #99999b;
-}
-
-.memoryCardFace {
-  transform: scaleX(-1);
-  position: absolute;
-  background-color: #ffffff;
-  border-radius: 50px;
-  width: 100%;
-  height: 100%;
+.sentenceWrapper {
+  margin: 20px 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* border: 1px solid #99999b; */
-  box-shadow: -5px -5px 15px #ffffff, 5px 5px 15px #e9ecf4;
-  padding: 10px;
+}
+
+.singleWord {
+  pointer-events: none;
+}
+
+.draggableWord {
+  position: relative;
+  cursor: grab;
+  font-size: 2rem;
+  margin: 0 5px;
   box-sizing: border-box;
+  box-shadow: 0 0 10px rgb(162, 162, 162);
+  border-radius: 7px;
+  padding: 5px 5px;
+  background-color: rgb(197, 232, 255);
 }
 
-.memoryCardFaceImg {
-  width: 80%;
-  height: auto;
-  /* max-height: 200px; */
-  overflow: hidden;
-  display: block;
-}
-
-.flip-card.is-flipped .memoryCard {
-  transform: rotateY(180deg);
-}
-
-.flip-card.is-inactive .memoryCard {
-  transform: rotateY(180deg);
+.draggableWord p {
+  margin: 0;
 }
 
 @media screen and (max-width: 1370px) {
-  .flip-card {
-    /* min-height: 150px; */
-    height: 200px;
-  }
 }
