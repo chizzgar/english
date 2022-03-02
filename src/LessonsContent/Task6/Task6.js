@@ -4,7 +4,8 @@ import { Context } from "../../Context";
 import { HeadingText } from "../HeadingText/HeadingText";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-
+import wrong from "./img/wrong.svg";
+import right from "./img/right.svg";
 
 
 // Контент модального окна - Алфавит
@@ -299,7 +300,18 @@ function Task6() {
   const [items2, setItems2] = useState([]);
   const [items3, setItems3] = useState([]);
   const [items4, setItems4] = useState([]);
-  const [reset, setReset] = useState(false);
+
+  const [sentenceFeedBack, setSentenscFeedBack] = useState(false);
+
+  // const [firstSentenceFeedBack, setFirstSentenscFeedBack] = useState(false);
+  // const [secondSentenceFeedBack, setSecondSentenscFeedBack] = useState(false);
+  // const [thirdSentenceFeedBack, setThirdSentenscFeedBack] = useState(false);
+  // const [fourthSentenceFeedBack, setForthSentenscFeedBack] = useState(false);
+
+  const [firstSentenceAnswer, setFirstSentenceAnswer] = useState();
+  const [secondSentenceAnswer, setSecondSentenceAnswer] = useState();
+  const [thirdSentenceAnswer, setThirdSentenceAnswer] = useState();
+  const [fourthSentenceAnswer, setFourthSentenceAnswer] = useState();
 
   // Иконки правого поля  - (помощь и алфавит)
   useEffect(() => {
@@ -316,11 +328,55 @@ function Task6() {
     // listWrapper.current.style.width = `${listWrapper.current.clientWidth}px`;
   }, []);
 
+
+  useEffect(() => {
+    if (resetTask === true) {
+      setSentenscFeedBack(false);
+      // setFirstSentenscFeedBack(false)
+      // setSecondSentenscFeedBack(false)
+      // setThirdSentenscFeedBack(false)
+      // setForthSentenscFeedBack(false)
+      setItems(words.sort(() => Math.random() - 0.5));
+      setItems2(words2.sort(() => Math.random() - 0.5));
+      setItems3(words3.sort(() => Math.random() - 0.5));
+      setItems4(words4.sort(() => Math.random() - 0.5));
+    }
+    lessonSetResetTask(false);
+  }, [resetTask]);
+
+  useEffect(() => {
+    if (checkTask === true) {
+      const checkSent = (sentence) => {
+        let winVar = 0;
+        sentence.map((item, index) => item.order === (index + 1).toString() ? winVar++ : false);
+        if (winVar === sentence.length) return true;
+        else return false;
+      }
+      setSentenscFeedBack(true);
+      // setFirstSentenscFeedBack(true)
+      // setSecondSentenscFeedBack(true)
+      // setThirdSentenscFeedBack(true)
+      // setForthSentenscFeedBack(true)
+      setFirstSentenceAnswer(checkSent(items))
+      setSecondSentenceAnswer(checkSent(items2))
+      setThirdSentenceAnswer(checkSent(items3))
+      setFourthSentenceAnswer(checkSent(items4))
+      if (checkSent(items) && checkSent(items2) && checkSent(items3) && checkSent(items3)) {
+        lessonSetAndAnswer(true);
+      }
+      else {
+        lessonSetAndAnswer(false);
+      }
+    }
+    lessonSetCheckTask(false);
+  }, [checkTask]);
+
+
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
-
+    lessonSetStartAction(true);
     return result;
   };
 
@@ -387,39 +443,35 @@ function Task6() {
         <div className="sentencesBox">
           1)<DragDropContext onDragEnd={onDragEnd}>
             <Sentences
-              key={reset}
               words={items}
             />
           </DragDropContext>
-          <p style={{ margin: '0 -10px', padding: '0' }}>.</p>
+          <p style={{ margin: '0 -10px', padding: '0' }}>.</p>{sentenceFeedBack ? firstSentenceAnswer ? < img className="imgFeedBack" alt="" src={right} /> : <img className="imgFeedBack" alt="" src={wrong} /> : ''}
         </div>
         <div className="sentencesBox">
           2)<DragDropContext onDragEnd={onDragEnd2}>
             <Sentences
-              key={reset}
               words={items2}
             />
           </DragDropContext>
-          <p style={{ margin: '0 -10px', padding: '0' }}>.</p>
+          <p style={{ margin: '0 -10px', padding: '0' }}>.</p>{sentenceFeedBack ? secondSentenceAnswer ? < img className="imgFeedBack" alt="" src={right} /> : <img className="imgFeedBack" alt="" src={wrong} /> : ''}
         </div>
         <div className="sentencesBox">
           3)<DragDropContext onDragEnd={onDragEnd3}>
             <Sentences
-              key={reset}
               words={items3}
             />
           </DragDropContext>
-          <p style={{ margin: '0 -10px', padding: '0' }}>.</p>
+          <p style={{ margin: '0 -10px', padding: '0' }}>.</p>{sentenceFeedBack ? thirdSentenceAnswer ? < img className="imgFeedBack" alt="" src={right} /> : <img className="imgFeedBack" alt="" src={wrong} /> : ''}
         </div>
 
         <div className="sentencesBox">
           4)<DragDropContext onDragEnd={onDragEnd4}>
             <Sentences
-              key={reset}
               words={items4}
             />
           </DragDropContext>
-          <p style={{ margin: '0 -10px', padding: '0' }}>.</p>
+          <p style={{ margin: '0 -10px', padding: '0' }}>.</p>{sentenceFeedBack ? fourthSentenceAnswer ? < img className="imgFeedBack" alt="" src={right} /> : <img className="imgFeedBack" alt="" src={wrong} /> : ''}
         </div>
       </div>
     </div >

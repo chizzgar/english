@@ -15,7 +15,7 @@
 .sentencesBox {
   display: flex;
   flex-direction: row;
-  align-items: baseline;
+  align-items: center;
   font-size: 2rem;
   margin: 0 3px;
 }
@@ -37,6 +37,11 @@
 
 .draggableWord p {
   margin: 0;
+}
+
+.imgFeedBack {
+  margin-left: 24px;
+  height: 30px;
 }
 
 @media screen and (max-width: 1370px) {
