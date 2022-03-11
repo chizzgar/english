@@ -4,3 +4,4 @@ export { default as Task3 } from './Task3/Task3.js';
 export { default as Task4 } from './Task4/Task4.js';
 export { default as Task5 } from './Task5/Task5.js';
 export { default as Task6 } from './Task6/Task6.js';
+export { default as Task7 } from './Task7/Task7.js';

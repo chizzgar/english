@@ -288,25 +288,12 @@ function Task6() {
     lessonSetViewFeedback,
   } = useContext(Context);
 
-  // const wordsReady = useCallback((words) => {
-  //   return words.sort(() => Math.random() > 0.5 ? 1 : -1);
-  // }, []);
-
-  // const wordsReady2 = useCallback((words) => {
-  //   return words.sort(() => Math.random() > 0.5 ? 1 : -1);
-  // }, []);
-
   const [items, setItems] = useState([]);
   const [items2, setItems2] = useState([]);
   const [items3, setItems3] = useState([]);
   const [items4, setItems4] = useState([]);
 
   const [sentenceFeedBack, setSentenscFeedBack] = useState(false);
-
-  // const [firstSentenceFeedBack, setFirstSentenscFeedBack] = useState(false);
-  // const [secondSentenceFeedBack, setSecondSentenscFeedBack] = useState(false);
-  // const [thirdSentenceFeedBack, setThirdSentenscFeedBack] = useState(false);
-  // const [fourthSentenceFeedBack, setForthSentenscFeedBack] = useState(false);
 
   const [firstSentenceAnswer, setFirstSentenceAnswer] = useState();
   const [secondSentenceAnswer, setSecondSentenceAnswer] = useState();
@@ -332,10 +319,6 @@ function Task6() {
   useEffect(() => {
     if (resetTask === true) {
       setSentenscFeedBack(false);
-      // setFirstSentenscFeedBack(false)
-      // setSecondSentenscFeedBack(false)
-      // setThirdSentenscFeedBack(false)
-      // setForthSentenscFeedBack(false)
       setItems(words.sort(() => Math.random() - 0.5));
       setItems2(words2.sort(() => Math.random() - 0.5));
       setItems3(words3.sort(() => Math.random() - 0.5));
@@ -353,10 +336,6 @@ function Task6() {
         else return false;
       }
       setSentenscFeedBack(true);
-      // setFirstSentenscFeedBack(true)
-      // setSecondSentenscFeedBack(true)
-      // setThirdSentenscFeedBack(true)
-      // setForthSentenscFeedBack(true)
       setFirstSentenceAnswer(checkSent(items))
       setSecondSentenceAnswer(checkSent(items2))
       setThirdSentenceAnswer(checkSent(items3))
@@ -377,6 +356,7 @@ function Task6() {
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
     lessonSetStartAction(true);
+    lessonSetViewFeedback(false)
     return result;
   };
 

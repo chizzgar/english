@@ -16,7 +16,8 @@ import {
   Task3,
   Task4,
   Task5,
-  Task6
+  Task6,
+  Task7,
 } from './LessonsContent/index_lessons';
 
 
@@ -62,6 +63,13 @@ const lessonsContent = [
     href: 5,
     link: '/word_order',
     content: <Task6 />
+  },
+  {
+    id: "menu_6",
+    value: "Сопоставь слово с транскрипцией",
+    href: 6,
+    link: '/matched_word_t6',
+    content: <Task7 />
   }
 ];
 
